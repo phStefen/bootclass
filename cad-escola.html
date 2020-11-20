@@ -151,7 +151,7 @@
         firebase.database().ref('usuarios/' + user).once('value').then(snap => {
           if (!snap.exists()) {
             firebase.database().ref('usuarios/' + user).set({
-              razao: razao,
+              nome: razao,
               cnpj: cnpj,
               email: email,
               bio: 'Edite seu Perfil para Alterar a sua Biografia',

@@ -38,7 +38,25 @@ function getInfo() {
      }
 }
 
-function clearInfo(){
+function getOtherInfo() {
+     return {
+          user: sessionStorage.getItem('otheruser'),
+          nome: sessionStorage.getItem('othernome'),
+          bio: sessionStorage.getItem('otherbio'),
+          perfil: sessionStorage.getItem('otherperfil'),
+          cargo: sessionStorage.getItem('othercargo'),
+     }
+}
+
+function setOtherInfo(user, nome, bio, perfil, cargo){
+     sessionStorage.setItem('otheruser', user);
+     sessionStorage.setItem('othernome', nome)
+     sessionStorage.setItem('otherbio', bio);
+     sessionStorage.setItem('otherperfil', perfil);
+     sessionStorage.setItem('othercargo', cargo);
+}
+
+function clearInfo() {
      localStorage.setItem('nome', '');
      localStorage.setItem('bio', '')
      localStorage.setItem('perfil', '');
@@ -47,8 +65,8 @@ function clearInfo(){
      window.location.href = 'index.html'
 }
 
-function setPerfil(perfil){
-     if(localStorage.getItem('lembrar') === 'true')
+function setPerfil(perfil) {
+     if (localStorage.getItem('lembrar') === 'true')
           localStorage.setItem('perfil', perfil);
      else
           sessionStorage.setItem('perfil', perfil);

@@ -179,3 +179,12 @@
 .icon-ativo{
     filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
 }
+
+a{
+    color: #B67BFE;
+}
+
+a:hover{
+    color: #B67BFE;
+    cursor: pointer;
+}

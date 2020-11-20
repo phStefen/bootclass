@@ -78,8 +78,7 @@
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
           <div class="dropdown-menu dropdown-menu-right">
             <h6 class="dropdown-header">Configurações</h6>
-            <button class="dropdown-item"
-              onclick="clearInfo()">Sair</button>
+            <button class="dropdown-item" onclick="clearInfo()">Sair</button>
           </div>
         </div>
 
@@ -167,7 +166,7 @@
             <span
               class="input-group-text border-left-0 border-top-0 border-bottom-0 border-right bg-transparent mr-n5">@</span>
           </div>
-          <input type="text" class="form-control input-custom rounded-pill bg-transparent px-5"
+          <input type="text" class="form-control input-custom rounded-pill bg-transparent px-5" id="pesquisaperfil"
             placeholder="Buscar um Perfil">
         </div>
 
@@ -267,6 +266,16 @@
       if (!info.nome)
         window.location.href = 'index.html';
       carregarPost();
+
+
+      $("#pesquisaperfil").on('keyup', event => {
+        if (event.keyCode === 13) {
+          var pesquisar = $('#pesquisaperfil').val();
+
+          if (pesquisar)
+            pesquisarUser(pesquisar);
+        }
+      });
     });
   </script>
 </body>

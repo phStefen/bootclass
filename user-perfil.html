@@ -27,7 +27,7 @@
           <a type="button" class="btn btn-light bg-white" href="my-perfil.html">
             <div class="row p-2">
               <div class="col-auto">
-                <img src="img/perfil.svg" alt="" width="60" height="60" class="rounded-circle fotoperfil">
+                <img src="img/perfil.svg" alt="" width="60" height="60" class="rounded-circle fotoperfil" id="userperfil">
               </div>
               <div class="col text-left">
                 <span id="usernome">Nome do Usário</span>
@@ -104,10 +104,6 @@
                 <div class="row">
                   <span>@<span id="perfiluser">Usuário</span></span>
                 </div>
-              </div>
-              <div class="col">
-                <button class="btn float-right rounded-pill px-4 font-weight-bold btn-custom btn-perfil"
-                  id="editperfil">Editar Perfil</button>
               </div>
             </div>
 
@@ -238,20 +234,25 @@
 
   <script>
     var info = getInfo();
-    var nome = info.nome;
-    var user = info.user;
-    var bio = info.bio;
-    var cargo = info.cargo;
-    var perfil = info.perfil;
+    var meunome = info.nome;
+    var meuuser = info.user;
+    var meuperfil = info.perfil;
 
-    $('#usernome').text(nome);
-    $('#useruser').text(user);
+    var otherinfo = getOtherInfo();
+    var nome = otherinfo.nome;
+    var user = otherinfo.user;
+    var perfil = otherinfo.perfil;
+    var bio = otherinfo.bio;
+    var cargo = otherinfo.cargo;
+
+    $('#usernome').text(meunome);
+    $('#useruser').text(meuuser);
+    $('#userperfil').attr('src', meuperfil);
 
     $('#perfilnome').text(nome);
     $('#perfiluser').text(user);
     $('#perfilbio').text(bio);
-    $('#editbio').text(bio);
-    $('.fotoperfil').attr('src', perfil);
+    $('#editfoto').attr('src', perfil);
 
     $(".nav .nav-link").on("click", function () {
       $(".nav").find(".tabs").removeClass("tabs");

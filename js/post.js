@@ -10,7 +10,7 @@ function gerarPost(id, user, nome, data, texto, likes, comentarios, perfil) {
                 </div>
                 <div class="col">
                       <strong class="nome">${nome}</strong>
-                      <span class="user">${user}</span>
+                      <a class="user" onclick="pesquisarUser('${user}')">${user}</a>
                       <span class="float-right">${data}</span>
                 </div>
             </div>
@@ -46,7 +46,7 @@ function gerarComentario(nome, user, texto, perfil) {
       <div class="col-auto"><img src="${perfil}" alt="" width="40" height="40" class="rounded-circle"></div>
         <div class="col">
           <div class="bg-light px-4 py-2 rounded">
-          <p><span class="lead">${nome}</span> @${user}</p>
+          <p><span class="lead">${nome}</span> <a style="color: #B67BFE;" onclick="pesquisarUser('${user}')">@${user}</a></p>
           <p class="text-justify">
             ${texto}
           </p>
@@ -256,4 +256,16 @@ function carregarMaisMeu() {
       if (meuKey.length < 5)
         firstKeyMeu = null;
     });
+}
+
+function pesquisarUser(user) {
+  firebase.database().ref(`usuarios/${user}`).once('value').then(snap => {
+    if (snap.exists()) {
+      setOtherInfo(snap.val().user, snap.val().nome, snap.val().bio, snap.val().perfil, snap.val().cargo);
+      window.location.href = 'user-perfil.html'
+    }
+    else {
+      criarToast('Aviso', 'Nenhum Usuário Encontrado!', 'warning');
+    }
+  });
 }
