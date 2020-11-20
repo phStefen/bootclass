@@ -1,0 +1,181 @@
+.badge-custom{
+    background: #723dbe;
+    color: #fff;
+}
+
+.nav-item{
+    color: #b682ff;
+}
+
+.nav-item:hover{
+    color: #54229d;
+}
+
+.nav-item.tabs{
+    background: #54229d;
+    color: #fff;
+}
+
+.btn-custom{
+    background: #b682ff;
+    border-color: #b682ff;
+    color: #fff;
+}
+
+.btn-perfil{
+    background-color: transparent;
+    color: #54229d;
+}
+
+.btn-custom:focus,
+.btn-custom:hover,
+.btn-custom:active,
+.btn-custom:active:focus{
+    background: #54229d;
+    border-color: #54229d;
+    box-shadow: 0 0 0 0.2rem rgba(114,61,190,.25);
+    color: #fff;
+}
+
+.input-custom:focus,
+.input-custom:hover,
+.input-custom:active,
+.input-custom:active:focus{
+    border-color: #54229d;
+    box-shadow: 0 0 0 0.2rem rgba(114,61,190,.25);
+    color: #54229d;
+}
+
+.editavel:hover{
+    cursor: pointer;
+}
+
+.border-custom{
+    border: solid 1px #54229d;
+}
+
+.sidebar{
+    box-shadow: inset 0 0 .2em black;
+    height: 100%;
+    background: #eee;
+}
+
+.logo{
+    background-image: url(../img/logo.svg);
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.perfil{
+    height: 50px;
+    border-radius: 360px;
+}
+
+.cursos{
+    background-color:  #30252E;
+}
+
+.noticias{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow-y:auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.icon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+}
+
+.icon-home{
+    background-image: url("../img/home.svg");
+}
+.icon-home:hover,
+.icon-home:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+}
+
+.icon-message{
+    background-image: url("../img/message.svg");
+}
+.icon-message:hover,
+.icon-message:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+}
+
+.icon-notification{
+    background-image: url("../img/notification.svg");
+}
+.icon-notification:hover,
+.icon-notification:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+}
+
+.icon-comentar{
+    background-image: url("../img/comentar.svg");
+}
+.icon-comentar:hover,
+.icon-comentar:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+    cursor: pointer;
+}
+
+.icon-curti{
+    background-image: url("../img/curti.svg");
+}
+.icon-curti:hover,
+.icon-curti:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+    cursor: pointer;
+}
+
+.icon-compartilhar{
+    background-image: url("../img/compartilhar.svg");
+}
+.icon-compartilhar:hover,
+.icon-compartilhar:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+    cursor: pointer;
+}
+
+.icon-imagem{
+    background-image: url("../img/imagem.svg");
+}
+.icon-imagem:hover,
+.icon-imagem:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+    cursor: pointer;
+}
+
+.icon-arquivo{
+    background-image: url("../img/arquivo.svg");
+}
+.icon-arquivo:hover,
+.icon-arquivo:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+    cursor: pointer;
+}
+
+.icon-enquete{
+    background-image: url("../img/enquete.svg");
+}
+.icon-enquete:hover,
+.icon-enquete:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+    cursor: pointer;
+}
+
+.icon-calendario{
+    background-image: url("../img/calendario.svg");
+}
+.icon-calendario:hover,
+.icon-calendario:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+    cursor: pointer;
+}
+
+.icon-ativo{
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+}
