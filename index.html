@@ -61,9 +61,8 @@
 
   <script>
     $(window).on('load', () => {
-      console.log(localStorage.getItem('lembrar'));
-      if (localStorage.getItem('lembrar') === 'true')
-        window.location.href = 'index.html';
+      if (localStorage.getItem('lembrar') === 'true' && localStorage.getItem('nome'))
+        window.location.href = 'feed.html';
       else $('#userlogin').val(localStorage.getItem('user'));
     });
 
