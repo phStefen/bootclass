@@ -45,19 +45,18 @@
     </div>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
-  <script src="js/init.js"></script>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
     crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+  <script src="js/init.js"></script>
   <script src="js/toast.js"></script>
   <script src="js/getinfo.js"></script>
+  <script src="js/sha256.min.js"></script>
 
   <script>
     $(window).on('load', () => {
@@ -94,7 +93,7 @@
       if (camposPreenchidos()) {
         firebase.database().ref('usuarios/' + user).once('value').then(snap => {
           if (snap.exists()) {
-            if (snap.val().senha === senha) {
+            if (snap.val().senha === sha256(senha)) {
               setInfo(snap.val().nome, snap.val().user, snap.val().bio, snap.val().perfil, snap.val().cargo, $('#renember').is(':checked'));
               window.location.href = 'feed.html';
             }

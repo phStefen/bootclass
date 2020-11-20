@@ -74,6 +74,7 @@
   <script src="js/validadores.js"></script>
   <script src="js/toast.js"></script>
   <script src="js/jquery.mask.min.js"></script>
+  <script src="js/sha256.min.js"></script>
 
   <script>
     $('#cadcpf').mask('000.000.000-00');
@@ -137,7 +138,7 @@
               cpf: cpf,
               email: email,
               user: user,
-              senha: senha1,
+              senha: sha256(senha1),
               perfil: 'img/perfil.svg',
               bio: 'Edite seu Perfil para Alterar a sua Biografia',
               cargo: 'Aluno'
