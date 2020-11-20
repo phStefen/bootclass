@@ -68,7 +68,7 @@ function publicar() {
       data: data,
       likes: 0,
       comentarios: 0,
-      perfil: localStorage.getItem('perfil')
+      perfil: perfil
     }).key;
 
     firebase.database().ref('usuarios/' + user + '/postagens').push(post);
@@ -88,7 +88,7 @@ function comentar(id) {
       nome: nome,
       texto: post,
       data: data,
-      perfil: localStorage.getItem('perfil')
+      perfil: perfil
     });
 
     let comentarios = Number($('div#' + id + ' span.comentarios').text());
