@@ -13,10 +13,48 @@
 
   <!-- CSS  -->
   <link rel="stylesheet" href="css/feed.css">
-  <title>Perfil \ BootClass</title>
+  <title>Página Inicial \ BootClass</title>
 </head>
 
 <body>
+
+  <!-- SECTION Modal-->
+  <!--ANCHOR Toast-->
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="position-absolute" id="toast-place" style="top:20px; right:20px; z-index: 1000;"></div>
+  </div>
+
+  <!--ANCHOR Comentários-->
+  <div class="modal fade" id="modalComentario" tabindex="-1" role="dialog" aria-labelledby="modalComentarioTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalComentarioTitle">Comentários</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body border-rounded">
+          <div class="container" id="comment-section">
+          </div>
+
+          <div class="my-5 text-center">
+            <button type="button" class="btn btn-custom rounded-pill comentario" id="carregar"
+              onclick="carregarComentarios(this)">Mostrar Mais</button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <textarea class="form-control input-custom rounded" placeholder="Faça um Comentário..." id="comentario"
+            style="resize: none;"></textarea>
+          <button type="button" class="btn btn-custom rounded-pill float-right comentario" id="postar"
+            onclick="comentar(this)">Comentar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--!SECTION -->
+
   <div class="container-fluid">
     <div class="row">
 
@@ -77,9 +115,9 @@
 
         <!-- ANCHOR Navbar -->
         <nav class="navbar navbar-light bg-light sticky-top mx-n4">
-          <span class="badge badge-custom px-4 py-2 rounded-pill">Meu Perfil</span>
+          <span class="badge badge-custom px-4 py-2 rounded-pill">Página Inicial</span>
           <a class="navbar-brand" href="feed.html">
-            <span class="icon icon-home icon-page"></span>
+            <span class="icon icon-home icon-ativo"></span>
           </a>
           <a class="navbar-brand" href="#">
             <span class="icon icon-notification"></span>
@@ -89,52 +127,30 @@
           </a>
         </nav>
 
-        <!-- ANCHOR Dados do Perfil -->
-        <div class="card mt-3">
-          <div class="container">
-            <div class="row card-header bg-white">
-              <div class="col-auto">
-                <input type="file" style="display: none;" id="foto" accept="image/png, image/jpeg">
-                <img id="editfoto" src="img/perfil.svg" height="60" width="60" class="rounded-circle fotoperfil">
-              </div>
-              <div class="col">
-                <div class="row">
-                  <strong id="perfilnome">Nome</strong>
-                </div>
-                <div class="row">
-                  <span>@<span id="perfiluser">Usuário</span></span>
-                </div>
-              </div>
-              <div class="col">
-                <button class="btn float-right rounded-pill px-4 font-weight-bold btn-custom btn-perfil"
-                  id="editperfil">Editar Perfil</button>
-              </div>
-            </div>
-
-            <div class="card-body text-justify">
-              <span id="perfilbio" class="d-inline">Edite seu Perfil para Alterar a sua Biografia</span>
-              <textarea class="form-control input-custom d-none" placeholder="Como foi a Aula?" id="editbio"
-                style="resize: none;"></textarea>
-            </div>
-
-            <div class="row text-center card-footer p-0">
-              <nav class="nav nav-pills nav-fill w-100">
-                <a class="nav-item nav-link tabs" href="#">Publicações</a>
-                <a class="nav-item nav-link" href="#">Curtidas</a>
-                <a class="nav-item nav-link" href="#">Arquivo</a>
-              </nav>
-            </div>
+        <!-- ANCHOR Publicar -->
+        <div>
+          <div>
+            <textarea class="form-control mt-3 input-custom" placeholder="Como foi a Aula?" id="publicagem"
+              style="resize: none;"></textarea>
+          </div>
+          <div class="mt-2 clearfix">
+            <span class="icon icon-imagem float-left mt-1 mx-1"></span>
+            <span class="icon icon-arquivo float-left mt-1 mx-1"></span>
+            <span class="icon icon-enquete float-left mt-1 mx-1"></span>
+            <span class="icon icon-calendario float-left mt-1 mx-1"></span>
+            <button type="button" class="btn btn-custom rounded-pill float-right" id="postar"
+              onclick="publicar()">Publicar</button>
           </div>
         </div>
 
-        <hr class="mt-5">
+        <hr class="border-custom">
 
         <!-- SECTION Postagens -->
         <div id="feed">
 
         </div>
         <div class="my-5 text-center">
-          <button type="button" class="btn btn-custom rounded-pill" id="carregar" onclick="carregarMaisMeu()">Mostrar
+          <button type="button" class="btn btn-custom rounded-pill" id="carregar" onclick="carregarMaisPost()">Mostrar
             Mais</button>
         </div>
         <!-- !SECTION -->
@@ -144,8 +160,8 @@
 
       <!-- SECTION Direita -->
       <div class="col-4 offset-8 position-fixed sidebar border-left px-4 py-2">
-        <!--ANCHOR Buscar um Perfil-->
 
+        <!--ANCHOR Buscar um Perfil-->
         <div class="input-group mt-1 bg-light rounded-pill border-0">
           <div class="input-group-prepend">
             <span
@@ -220,6 +236,10 @@
     </div>
   </div>
 
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+  <script src="js/init.js"></script>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -227,98 +247,27 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
     crossorigin="anonymous"></script>
-
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-storage.js"></script>
-  <script src="js/init.js"></script>
+  <script src="js/getinfo.js"></script>
   <script src="js/toast.js"></script>
   <script src="js/post.js"></script>
-  <script src="js/getinfo.js"></script>
 
   <script>
+    var post;
     var info = getInfo();
+    var data = new Date().toLocaleDateString();
     var nome = info.nome;
     var user = info.user;
-    var bio = info.bio;
-    var cargo = info.cargo;
     var perfil = info.perfil;
 
     $('#usernome').text(nome);
     $('#useruser').text(user);
-
-    $('#perfilnome').text(nome);
-    $('#perfiluser').text(user);
-    $('#perfilbio').text(bio);
-    $('#editbio').text(bio);
     $('.fotoperfil').attr('src', perfil);
 
-    $(".nav .nav-link").on("click", function () {
-      $(".nav").find(".tabs").removeClass("tabs");
-      $(this).addClass("tabs");
-    });
-
-    $(".navbar .navbar-brand").on("click", function () {
-      $(".navbar").find(".icon-page").removeClass("icon-page");
-      $(this).addClass("icon-page");
-    });
-
-    $('#editperfil').on('click', () => {
-      $('#perfilbio').toggleClass('d-inline d-none');
-      $('#editbio').toggleClass('d-block d-none');
-      $('#editfoto').toggleClass('editavel');
-      $('#editperfil').text($('#editperfil').text() === 'Editar Perfil' ? 'Salvar Alterações' : 'Editar Perfil');
-
-      if ($('#editperfil').text() === 'Editar Perfil') {
-        var novaBio = $('#editbio').val();
-        var file = $('#foto').get(0).files;
-
-        if (novaBio) {
-          firebase.database().ref('usuarios/' + user + '/bio').set(novaBio);
-          localStorage.setItem('bio', novaBio);
-          $('#perfilbio').text(novaBio);
-          $('#editbio').text(novaBio);
-        }
-
-        if (file.length > 0) {
-
-          const ref = firebase.storage().ref();
-          const name = new Date() + '-' + file[0].name;
-
-          const metadata = { contentType: file[0].type }
-          const task = ref.child(name).put(file[0], metadata);
-
-          task
-            .then(snapshot => snapshot.ref.getDownloadURL())
-            .then(url => {
-              firebase.database().ref('usuarios/' + user + '/perfil').set(url);
-              setPerfil(url)
-              $('.fotoperfil').attr('src', url);
-            })
-        }
-      }
-    });
-
     $(document).ready(function () {
-      $('#editfoto').on('click', () => {
-        if ($('#editfoto').hasClass('editavel')) {
-          $('#foto').click();
-        }
-      })
-
-      $('#foto').on('change', () => {
-        var input = $('#foto').get(0).files;
-        if(input.length > 0){
-          var reader = new FileReader();
-          reader.onload = (e) => {
-            $('#editfoto').attr('src', e.target.result);
-          };
-          reader.readAsDataURL(input[0]);
-        }
-      })
-    })
-
-    //carregarMeusPost();
+      if (!info.nome)
+        window.location.href = 'index.html';
+      carregarPost();
+    });
   </script>
 </body>
 

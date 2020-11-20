@@ -38,6 +38,15 @@ function getInfo() {
      }
 }
 
+function clearInfo(){
+     localStorage.setItem('nome', '');
+     localStorage.setItem('bio', '')
+     localStorage.setItem('perfil', '');
+     localStorage.setItem('cargo', '');
+     localStorage.setItem('lembrar', false);
+     window.location.href = 'index.html'
+}
+
 function setPerfil(perfil){
      if(localStorage.getItem('lembrar') === 'true')
           localStorage.setItem('perfil', perfil);
