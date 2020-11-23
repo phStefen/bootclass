@@ -228,14 +228,14 @@ function carregarMeusPost() {
 
 function carregarMeu(id) {
   firebase.database().ref('postagens/' + id).once('value').then(function (snap) {
-    $('#feed').prepend($(gerarPost(snap.key, snap.val().user, snap.val().nome, snap.val().data, snap.val().texto, snap.val().likes, snap.val().comentarios)).hide().fadeIn(1000));
+    $('#feed').prepend($(gerarPost(snap.key, snap.val().user, snap.val().nome, snap.val().data, snap.val().texto, snap.val().likes, snap.val().comentarios, snap.val().perfil)).hide().fadeIn(1000));
     setListener(snap.key);
   });
 }
 
 function carregarMeuDnv(id) {
   firebase.database().ref('postagens/' + id).once('value').then(function (snap) {
-    $('#feed').append($(gerarPost(snap.key, snap.val().user, snap.val().nome, snap.val().data, snap.val().texto, snap.val().likes, snap.val().comentarios)).hide().fadeIn(1000));
+    $('#feed').append($(gerarPost(snap.key, snap.val().user, snap.val().nome, snap.val().data, snap.val().texto, snap.val().likes, snap.val().comentarios, snap.val().perfil)).hide().fadeIn(1000));
     setListener(snap.key);
   });
 }
