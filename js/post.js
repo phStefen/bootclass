@@ -6,7 +6,7 @@ function gerarPost(id, user, nome, data, texto, likes, comentarios, perfil) {
       <div class="container">
             <div class="row card-header bg-white">
                 <div class="col-auto">
-                      <img src="${perfil}" height="40" width="40" class="rounded-circle">
+                      <img src="${perfil}" width="40" class="rounded-circle">
                 </div>
                 <div class="col">
                       <strong class="nome">${nome}</strong>
@@ -119,12 +119,14 @@ function exclude(key) {
 
 var postVal = [];
 var postKey = [];
-var firstKeyPost = "";
+var firstKeyPost;
 function carregarPost() {
   firebase.database().ref('postagens/').orderByKey().limitToLast(5).on('child_added', function (snap, prevChildKey) {
     postVal.unshift(snap.val());
     postKey.unshift(snap.key);
-    firstKeyPost = postKey[postKey.length - 1];
+
+    if (firstKeyPost !== 'Fim')
+      firstKeyPost = postKey[postKey.length - 1];
 
     $('#feed').prepend($(gerarPost(snap.key, snap.val().user, snap.val().nome, snap.val().data, snap.val().texto, snap.val().likes, snap.val().comentarios, snap.val().perfil)).hide().fadeIn(1000));
     setListener(snap.key);
@@ -134,7 +136,7 @@ function carregarPost() {
 function carregarMaisPost() {
   postKey = [];
   postVal = [];
-  if (firstKeyPost)
+  if (firstKeyPost !== 'Fim')
     firebase.database().ref('postagens/').orderByKey().endAt(exclude(firstKeyPost)).limitToLast(5).once('value').then((snap) => {
       snap.forEach(childSnap => {
         postVal.unshift(childSnap.val());
@@ -147,7 +149,7 @@ function carregarMaisPost() {
       })
 
       if (postVal.length < 5)
-        firstKeyPost = null;
+        firstKeyPost = 'Fim';
     });
 }
 
@@ -164,8 +166,9 @@ function setListener(id) {
 var commentVal = [];
 var commentKey = [];
 var firstKeyComment = "";
-
+var recipient;
 $('#modalComentario').on('hide.bs.modal', function (event) {
+  firebase.database().ref('comentarios/' + recipient).off();
   $('#comment-section').html('');
   commentVal = [];
   commentKey = [];
@@ -180,15 +183,15 @@ $(document).ready(function () {
 
   $('#modalComentario').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget)
-    var recipient = button.data('comment')
+    recipient = button.data('comment')
     var modal = $(this)
     modal.find('.comentario').data('value', recipient)
 
     firebase.database().ref('comentarios/' + recipient).orderByKey().limitToLast(5).on('child_added', function (snap, prevChildKey) {
-      commentVal.unshift(snap.val());
-      commentKey.unshift(snap.key);
-      firstKeyComment = commentKey[commentKey.length - 1];
-      $('#comment-section').prepend($(gerarComentario(snap.val().nome, snap.val().user, snap.val().texto, snap.val().perfil)).hide().fadeIn(1000));
+      commentKey.push(snap.key);
+      if (firstKeyComment !== 'Fim')
+        firstKeyComment = commentKey[0];
+      $('#comment-section').append($(gerarComentario(snap.val().nome, snap.val().user, snap.val().texto, snap.val().perfil)).hide().fadeIn(1000));
     });
   })
 });
@@ -198,7 +201,7 @@ function carregarComentarios(id) {
   commentKey = [];
   id = $(id).data('value');
 
-  if (firstKeyComment)
+  if (firstKeyComment !== 'Fim')
     firebase.database().ref('comentarios/' + id).orderByKey().endAt(exclude(firstKeyComment)).limitToLast(5).once('value').then((snap) => {
       snap.forEach(childSnap => {
         commentVal.unshift(childSnap.val());
@@ -206,11 +209,11 @@ function carregarComentarios(id) {
       });
       firstKeyComment = commentKey[commentKey.length - 1];
       commentVal.forEach((comentario, index) => {
-        $('#comment-section').append($(gerarComentario(comentario.nome, comentario.user, comentario.texto, comentario.perfil)).hide().fadeIn(1000));
+        $('#comment-section').prepend($(gerarComentario(comentario.nome, comentario.user, comentario.texto, comentario.perfil)).hide().fadeIn(1000));
       })
 
       if (commentVal.length < 5)
-        firstKeyComment = null;
+        firstKeyComment = 'Fim';
     });
 }
 
@@ -222,7 +225,7 @@ function carregarMeusPost() {
       meuKey.unshift(childSnap.val());
       carregarMeu(childSnap.val());
     });
-    firstKeyMeu = meuKey[meuKey.length - 1];
+      firstKeyMeu = meuKey[meuKey.length - 1];
   })
 }
 

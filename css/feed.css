@@ -176,6 +176,48 @@
     cursor: pointer;
 }
 
+.icon-materias{
+    background-image: url("../img/materias.svg");
+}
+.icon-materias:hover,
+.icon-materias:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+}
+
+.icon-atividades{
+    background-image: url("../img/atividade.svg");
+}
+.icon-atividades:hover,
+.icon-atividades:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+}
+
+.icon-noticias{
+    background-image: url("../img/news.svg");
+}
+.icon-noticias:hover,
+.icon-noticias:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+}
+
+.icon-buscar{
+    background-image: url("../img/search.svg");
+}
+.icon-buscar:hover,
+.icon-buscar:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+}
+
+
+.icon-perfil{
+    background-image: url("../img/perfil.svg");
+}
+.icon-perfil:hover,
+.icon-perfil:focus {
+    filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
+}
+
+
 .icon-ativo{
     filter: invert(27%) sepia(19%) saturate(6051%) hue-rotate(246deg) brightness(96%) contrast(94%);
 }
